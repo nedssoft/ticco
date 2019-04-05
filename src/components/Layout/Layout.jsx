@@ -4,6 +4,7 @@ import Aux from '../../hoc/Aux';
 import classes from './Layout.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar'
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer'
+import Footer from '../Footer/Footer'
 
 class Layout extends Component{
 
@@ -34,6 +35,7 @@ class Layout extends Component{
         <main className={classes.Content}>
           { children }
         </main>
+        <Footer />
       </Aux>
     );
    }
