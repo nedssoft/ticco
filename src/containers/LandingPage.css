@@ -1,0 +1,101 @@
+.Header {
+  height: 100vh;
+  color: aliceblue;
+  background: #7C909E;
+  display: flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Header p {
+  text-align: center;
+
+}
+.HText {
+  text-align: center;
+  font-weight: 900;
+}
+
+
+.GetStarted {
+  min-width: 120px;
+  margin: 50px 10px 0 0;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  line-height: 20px;
+  background-color: #EE6860;
+  letter-spacing: 0.3px;
+  color: aliceblue;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer; 
+
+}
+
+@media screen and (min-width: 768px) {
+  .Header {
+    font-size: 2rem;
+  }
+
+  .GetStarted {
+      width: 15%;
+      padding: 20px 0;
+  }
+ 
+}
+
+.Header {
+  animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s; /* Firefox */
+  -webkit-animation: fadeIn 2s; /* Safari and Chrome */
+  -o-animation: fadeIn 2s; /* Opera */
+}
+@keyframes fadeIn {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-moz-keyframes fadeIn { /* Firefox */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-webkit-keyframes fadeIn { /* Safari and Chrome */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-o-keyframes fadeIn { /* Opera */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+

@@ -12,7 +12,7 @@ function Toolbar ({toggleMenu}) {
       <nav className={classes.DesktopOnly}>
         <NavigationItems />
       </nav>
-    </header>
+    </header> 
   )
 }
 

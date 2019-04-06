@@ -26,3 +26,17 @@
   color: #ccc;
   cursor: not-allowed;
 }
+.btnDefault{
+  padding: 10px 0 10px 0;
+  text-align: center;
+  line-height: 20px;
+  background-color: #EE6860;
+  letter-spacing: 0.3px;
+  color: aliceblue;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer; 
+}
