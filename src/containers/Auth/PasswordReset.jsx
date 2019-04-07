@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import styles from './Auth.css'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
-import { checkValidity } from '../../helper'
+import { checkValidity } from '../../helpers/helper'
+import { resetPassword } from '../../store/actions'
 
 class SignIn extends Component {
   state = {
@@ -51,7 +52,7 @@ class SignIn extends Component {
       return false
     }
     const userData = this.extractFormData(controls)
-    console.log(userData)
+    this.props.resetPassword(userData)
   }
   extractFormData = (data) => {
     let formData = {}
@@ -71,8 +72,8 @@ class SignIn extends Component {
     }
     return  (
       <div className={styles.Container}>
+        { this.props.isLoading ? <Spinner /> : ''}
         <div className={styles.Auth}>
-          { this.props.isLoading ? <Spinner /> : ''}
           <form onSubmit={this.submitHandler}>
             { formElementArr.map(element => {
           return (
@@ -96,5 +97,9 @@ class SignIn extends Component {
 )
   }
 }
-
-export default SignIn
+const mapStateToProps = state => {
+  return {
+    isLoading: state.auth.isLoading
+  }
+}
+export default connect(mapStateToProps, { resetPassword })(SignIn)

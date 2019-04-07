@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import styles from './Auth.css'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
-import { checkValidity } from '../../helper'
+import { checkValidity } from '../../helpers/helper'
+import { successFeedback, errorFeedback } from '../../helpers/FeedbackMessage'
+import { registerUser } from '../../store/actions'
 
 class SignUp extends Component {
   state = {
@@ -109,10 +112,11 @@ class SignUp extends Component {
     event.preventDefault()
     const { controls, formIsValid } = this.state;
     if(!formIsValid) {
+      errorFeedback('Fix the errors indicated')
       return false
     }
     const userData = this.extractFormData(controls)
-    console.log(userData)
+    this.props.registerUser(userData)
   }
   extractFormData = (data) => {
     let formData = {}
@@ -158,5 +162,10 @@ class SignUp extends Component {
 )
   }
 }
-
-export default SignUp
+const mapStateToProps = state => {
+  return {
+    isLoading: state.auth.isLoading,
+    isLoggedIn: state.auth.token !== null || localStorage.getItem('token')
+  }
+}
+export default connect(mapStateToProps, { registerUser})(SignUp)
