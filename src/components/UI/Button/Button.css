@@ -16,11 +16,13 @@
 }
 
 .Success {
-  color: #5C9210;
+  background: #136F63;
+  color: aliceblue;
 }
 
 .Danger {
-  color: #944317;
+  color: aliceblue;
+  background: #bb4430;
 }
 .Button:disabled {
   color: #ccc;
@@ -30,7 +32,7 @@
   padding: 10px 0 10px 0;
   text-align: center;
   line-height: 20px;
-  background-color: #EE6860;
+  background-color: #bb4430;
   letter-spacing: 0.3px;
   color: aliceblue;
   border: none;
@@ -39,4 +41,9 @@
   font-weight: 600;
   text-decoration: none;
   cursor: pointer; 
+}
+.Submit {
+  width: 80%;
+  margin: 10px auto;
+  background: #136F63;
 }

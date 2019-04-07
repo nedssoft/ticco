@@ -1,7 +1,7 @@
 .Header {
   height: 100vh;
   color: aliceblue;
-  background: #7C909E;
+  background: #032B43;
   display: flex;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -28,15 +28,13 @@
   text-align: center;
   font-weight: 900;
 }
-
-
 .GetStarted {
   min-width: 120px;
   margin: 50px 10px 0 0;
   padding: 10px 0 10px 0;
   text-align: center;
   line-height: 20px;
-  background-color: #EE6860;
+  background-color: #136F63;
   letter-spacing: 0.3px;
   color: aliceblue;
   border: none;
@@ -52,7 +50,6 @@
   .Header {
     font-size: 2rem;
   }
-
   .GetStarted {
       width: 15%;
       padding: 20px 0;

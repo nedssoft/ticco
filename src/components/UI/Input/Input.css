@@ -32,8 +32,8 @@
 }
 
 .Invalid {
-  border: 1px solid red;
-  background-color: salmon;
+  border: 1px solid #bb4430;
+  background-color: #bb4430;
 }
 
 .Valid {
