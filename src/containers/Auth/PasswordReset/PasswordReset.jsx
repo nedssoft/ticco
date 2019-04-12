@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import styles from './Auth.css'
-import Spinner from '../../components/UI/Spinner/Spinner'
-import Input from '../../components/UI/Input/Input'
-import Button from '../../components/UI/Button/Button'
-import { checkValidity } from '../../helpers/helper'
-import { loginUser } from '../../store/actions'
+import styles from '../Auth.css'
+import Spinner from '../../../components/UI/Spinner/Spinner'
+import Input from '../../../components/UI/Input/Input'
+import Button from '../../../components/UI/Button/Button'
+import { checkValidity } from '../../../helpers/helper'
+import { resetPassword } from '../../../store/actions'
+import { errorFeedback } from '../../../helpers/FeedbackMessage'
 
 class SignIn extends Component {
   state = {
@@ -27,24 +27,13 @@ class SignIn extends Component {
         valid: false,
         shouldValidate: true
       },
-      password: {
-        elementType: 'input',
-        elementConfig: {
-          placeholder: 'Password',
-          id: 'password',
-          type:'password'
-        },
-        value: '',
-        label: 'Password',
-        validation: {
-          required: true,
-          minLength: 6
-        },
-        valid: false,
-        shouldValidate: true
-      },
     },
     formIsValid: false
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      errorFeedback(nextProps.errors.error)
+    }
   }
   inputChangeHandler = (event, inputId) => {
     const { controls } = this.state
@@ -61,6 +50,7 @@ class SignIn extends Component {
     }
     this.setState({controls: updatedControls, formIsValid});
   }
+  
   submitHandler = (event) => {
     event.preventDefault()
     const { controls, formIsValid } = this.state;
@@ -68,7 +58,7 @@ class SignIn extends Component {
       return false
     }
     const userData = this.extractFormData(controls)
-    this.props.loginUser(userData)
+    this.props.resetPassword(userData)
   }
   extractFormData = (data) => {
     let formData = {}
@@ -88,8 +78,8 @@ class SignIn extends Component {
     }
     return  (
       <div className={styles.Container}>
+        { this.props.isLoading ? <Spinner /> : ''}
         <div className={styles.Auth}>
-          { this.props.isLoading ? <Spinner /> : ''}
           <form onSubmit={this.submitHandler}>
             { formElementArr.map(element => {
           return (
@@ -106,12 +96,8 @@ class SignIn extends Component {
             />
           )
         })}
-            <Button disabled={!formIsValid} btnType="Submit">Sign In</Button>
+            <Button disabled={!formIsValid} btnType="Submit">Reset Link</Button>
           </form>
-          <div className={styles.Links}>
-            <Link to="/password-reset"> Forgot Password?</Link>
-            <Link to="/signup"> Not Registered? Sign up</Link>
-          </div>
         </div>
       </div>
 )
@@ -120,7 +106,7 @@ class SignIn extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.auth.isLoading,
-    isLoggedIn: state.auth.token !== null || localStorage.getItem('token')
+    errors: state.auth.errors
   }
 }
-export default connect(mapStateToProps, { loginUser })(SignIn)
+export default connect(mapStateToProps, { resetPassword })(SignIn)

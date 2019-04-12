@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth Components should render sign up page 1`] = `
+<div
+  className="Container"
+>
+  <div
+    className="Auth"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <Input
+        changed={[Function]}
+        elementConfig={
+          Object {
+            "id": "firstName",
+            "placeholder": "Your First Name",
+            "type": "text",
+          }
+        }
+        elementType="input"
+        key="firstName"
+        label="First Name"
+        shouldValidate={true}
+        valid={false}
+        value=""
+      />
+      <Input
+        changed={[Function]}
+        elementConfig={
+          Object {
+            "id": "lastName",
+            "placeholder": "Your Last Name",
+            "type": "text",
+          }
+        }
+        elementType="input"
+        key="lastName"
+        label="Last Name"
+        shouldValidate={true}
+        valid={false}
+        value=""
+      />
+      <Input
+        changed={[Function]}
+        elementConfig={
+          Object {
+            "id": "email",
+            "placeholder": "Your E-mail",
+            "type": "email",
+          }
+        }
+        elementType="input"
+        key="email"
+        label="Email"
+        shouldValidate={true}
+        valid={false}
+        value=""
+      />
+      <Input
+        changed={[Function]}
+        elementConfig={
+          Object {
+            "id": "phone",
+            "placeholder": "Your Phone Number",
+            "type": "tel",
+          }
+        }
+        elementType="input"
+        key="phone"
+        label="Phone"
+        shouldValidate={true}
+        valid={false}
+        value=""
+      />
+      <Input
+        changed={[Function]}
+        elementConfig={
+          Object {
+            "id": "password",
+            "placeholder": "Password",
+            "type": "password",
+          }
+        }
+        elementType="input"
+        key="password"
+        label="Password"
+        shouldValidate={true}
+        valid={false}
+        value=""
+      />
+      <Button
+        btnType="Submit"
+        disabled={true}
+      >
+        Sign Up
+      </Button>
+    </form>
+    <Link
+      to="/signin"
+    >
+       Already Registered? Sign in
+    </Link>
+  </div>
+</div>
+`;

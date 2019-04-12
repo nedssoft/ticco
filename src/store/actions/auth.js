@@ -1,10 +1,8 @@
-import axios from 'axios'
-import * as actionTypes from './types'
-import { successFeedback, errorFeedback } from '../../helpers/FeedbackMessage'
 
-const SIGN_UP_URL = 'https://oriechinedu-politico.herokuapp.com/api/v1/auth/signup'
-const LOGIN_URL = 'https://oriechinedu-politico.herokuapp.com/api/v1/auth/login'
-const PASSWORD_RESET_URL = 'https://oriechinedu-politico.herokuapp.com/api/v1/auth/reset'
+import axios from '../../helpers/axios'
+import * as actionTypes from './types'
+import { successFeedback } from '../../helpers/FeedbackMessage'
+
 export const registerRequest = () => {
   return {
     type: actionTypes.REGISTER_REQUEST,
@@ -20,9 +18,10 @@ export const registerSuccess = (userData) => {
   }
 }
 
-export const registerFailed = () => {
+export const registerFailed = (payload) => {
   return {
     type: actionTypes.REGISTER_FAILED,
+    payload
   }
 }
 export const loginRequest = () => {
@@ -30,7 +29,6 @@ export const loginRequest = () => {
     type: actionTypes.LOGIN_REQUEST,
   }
 }
-
 export const loginSuccess = (userData) => {
   localStorage.setItem('token', userData.token)
   localStorage.setItem('isAdmin', userData.user.isadmin)
@@ -40,9 +38,10 @@ export const loginSuccess = (userData) => {
   }
 }
 
-export const loginFailed = () => {
+export const loginFailed = (payload) => {
   return {
     type: actionTypes.LOGIN_FAILED,
+    payload
   }
 }
 export const passwordResetRequest = () => {
@@ -57,40 +56,34 @@ export const passwordResetSuccess = () => {
   }
 }
 
-export const passwordResetFailed = () => {
+export const passwordResetFailed = (payload) => {
   return {
     type: actionTypes.RESET_PASSWORD_FAILED,
+    payload
   }
 }
 export const registerUser = (userData) => async (dispatch) => {
   dispatch(registerRequest())
   try {
-    const res = await axios.post(SIGN_UP_URL, userData);
+    const res = await axios.post('/auth/signup', userData);
     const { data } = res.data
-    if (data.length) {
-      dispatch(registerSuccess(data[0]))
-      successFeedback('Registration Successful')
-    } else errorFeedback('unknown error occurred')
+    dispatch(registerSuccess(data[0]))
+    successFeedback('Registration Successful')
   } catch (err) {
-    dispatch(registerFailed())
-    errorFeedback(err.response.data.error)
+    dispatch(registerFailed(err.response.data))
   }
 }
 export const loginUser = (userData) => async (dispatch) => {
   dispatch(loginRequest())
   try {
-    const res = await axios.post(LOGIN_URL, userData);
+    const res = await axios.post('/auth/login', userData);
     const { data } = res.data
-    if (data.length) {
-      dispatch(loginSuccess(data[0]))
-      successFeedback('Login Successful')
-    } else errorFeedback('unknown error occurred')
+    dispatch(loginSuccess(data[0]))
+    successFeedback('Login Successful')
   } catch (err) {
-    dispatch(loginFailed())
-    errorFeedback(err.response.data.error)
+    dispatch(loginFailed(err.response.data))
   }
 }
-
 export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('isAdmin')
@@ -103,16 +96,12 @@ export const logoutUser = () => {
     dispatch(logout())
   }
 }
-
 export const resetPassword = (userData) => async (dispatch) => {
   dispatch(passwordResetRequest())
   try {
-    const res = await axios.post(PASSWORD_RESET_URL, userData)
-    console.log(res.data)
-    dispatch(passwordResetSuccess())
+    const res = await axios.post('/auth/reset', userData)
+    if (res.data) dispatch(passwordResetSuccess())
   } catch (err) {
-    dispatch(passwordResetFailed())
-    const message = err.response.data.error || 'Unknown error occurred'
-    errorFeedback(message)
+    dispatch(passwordResetFailed(err.response.data || {error: 'Unknown error occurred' }))
   }
 }

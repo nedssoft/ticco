@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth Components should render correctly 1`] = `
+<div
+  className="Container"
+>
+  <div
+    className="Auth"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <Input
+        changed={[Function]}
+        elementConfig={
+          Object {
+            "id": "email",
+            "placeholder": "Your E-mail",
+            "type": "email",
+          }
+        }
+        elementType="input"
+        key="email"
+        label="Email"
+        shouldValidate={true}
+        valid={false}
+        value=""
+      />
+      <Input
+        changed={[Function]}
+        elementConfig={
+          Object {
+            "id": "password",
+            "placeholder": "Password",
+            "type": "password",
+          }
+        }
+        elementType="input"
+        key="password"
+        label="Password"
+        shouldValidate={true}
+        valid={false}
+        value=""
+      />
+      <Button
+        btnType="Submit"
+        disabled={true}
+      >
+        Sign In
+      </Button>
+    </form>
+    <div
+      className="Links"
+    >
+      <Link
+        to="/password-reset"
+      >
+         Forgot Password?
+      </Link>
+      <Link
+        to="/signup"
+      >
+         Not Registered? Sign up
+      </Link>
+    </div>
+  </div>
+</div>
+`;

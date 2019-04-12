@@ -1,7 +1,8 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const autoprefixer = require('autoprefixer')
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
@@ -30,18 +31,32 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'css-loader',
-        query: {
+        options: {
+          importLoaders: 1,
           modules: true,
           localIdentName: '[name]__[local]___[hash:base64:5]',
         },
       },
       {
-
+        test: /\.css$/,
+        loader: 'postcss-loader',
+        options: {
+          localIdentName: 'postcss',
+          plugins: () => [
+            autoprefixer({
+              "browsers": [
+                "> 1%",
+                "last 2 versions"
+              ]
+            })
+          ], 
+        },
+      },
+      {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: {
           loader: 'url-loader',
           options: {
-
             sourceMap: true,
             importLoaders: 1,
           },
@@ -59,6 +74,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 25000,
+            name: 'images/[name].[ext]'
           },
         },
       },
@@ -69,12 +85,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
+      template:  './src/index.html',
+      filename: 'index.html',
+      inject: 'body'
     }),
-    // new MiniCssExtractPlugin({
-    //   filename: '[name].css',
-    //   chunkFilename: '[id].css',
-    // }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
   ],
 };

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavigationItems should render three navigation items 1`] = `
+<ul
+  className="NavigationItems"
+>
+  <NavigationItem
+    link="/signin"
+  >
+    Sign In
+  </NavigationItem>
+  <NavigationItem
+    link="/signup"
+  >
+    Sign Up
+  </NavigationItem>
+  <NavigationItem
+    link="/logout"
+  >
+    Logout
+  </NavigationItem>
+</ul>
+`;

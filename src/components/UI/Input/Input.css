@@ -1,8 +1,6 @@
 .Input {
   width: 100%;
-  box-sizing: border-box;
 }
-
 .Label {
   font-weight: bold;
   display: block;
@@ -12,7 +10,6 @@
   width: 100%;
   margin-left: 10%;
 }
-
 .InputElement{
   outline: none;
   width: 80%;
@@ -22,8 +19,8 @@
   font: inherit;
   display: block;
   margin: 10px auto;
-  box-sizing: border-box;
   font-size: 18px;
+  border-radius: 3px;
 }
 
 .InputElement:focus {

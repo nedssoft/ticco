@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import styles from './Auth.css'
-import Spinner from '../../components/UI/Spinner/Spinner'
-import Input from '../../components/UI/Input/Input'
-import Button from '../../components/UI/Button/Button'
-import { checkValidity } from '../../helpers/helper'
-import { successFeedback, errorFeedback } from '../../helpers/FeedbackMessage'
-import { registerUser } from '../../store/actions'
+import styles from '../Auth.css'
+import Spinner from '../../../components/UI/Spinner/Spinner'
+import Input from '../../../components/UI/Input/Input'
+import Button from '../../../components/UI/Button/Button'
+import { checkValidity } from '../../../helpers/helper'
+import { successFeedback, errorFeedback } from '../../../helpers/FeedbackMessage'
+import { registerUser } from '../../../store/actions'
 
-class SignUp extends Component {
+export class SignUp extends Component {
   state = {
     controls: {
       firstName: {
@@ -93,6 +93,11 @@ class SignUp extends Component {
     },
     formIsValid: false
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      errorFeedback(nextProps.errors.error)
+    }
+  }
   inputChangeHandler = (event, inputId) => {
     const { controls } = this.state
     const updatedControls = { ...controls }
@@ -165,7 +170,8 @@ class SignUp extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.auth.isLoading,
-    isLoggedIn: state.auth.token !== null || localStorage.getItem('token')
+    isLoggedIn: state.auth.token !== null || localStorage.getItem('token'),
+    errors: state.auth.errors
   }
 }
 export default connect(mapStateToProps, { registerUser})(SignUp)

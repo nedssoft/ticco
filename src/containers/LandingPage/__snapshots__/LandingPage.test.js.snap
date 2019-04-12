@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing Page should render correctly 1`] = `
+<header
+  className="Header"
+>
+  <h1
+    className="HText"
+  >
+    Welcome to Politico
+  </h1>
+  <p
+    className="text-center mt-2"
+  >
+    Your vote is your voice, your vote is your power, guard it jealously
+  </p>
+  <Link
+    className="GetStarted"
+    id="get-started"
+    to="/signin"
+  >
+    Get Started
+  </Link>
+</header>
+`;

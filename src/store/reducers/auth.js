@@ -4,6 +4,7 @@ const initialState = {
   token: null,
   user: null,
   isLoading: false,
+  errors: null
 }
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -16,6 +17,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        errors: action.payload
       }
     case actionTypes.REGISTER_SUCCESS:
       return {
@@ -33,6 +35,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        errors: action.payload
       }
     case actionTypes.LOGIN_SUCCESS:
       return {
@@ -50,6 +53,7 @@ const authReducer = (state = initialState, action) => {
     return {
       ...state,
       isLoading: false,
+      errors: action.payload
     }
   case actionTypes.RESET_PASSWORD_SUCCESS:
     return {

@@ -42,6 +42,8 @@
     "react/button-has-type":"off",
     "react/destructuring-assignment":"off",
     "import/prefer-default-export":"off",
-    "no-useless-escape":"off"
+    "no-useless-escape":"off",
+    "react/jsx-filename-extension":"off",
+    "import/no-named-as-default":"off"
   }
 }
