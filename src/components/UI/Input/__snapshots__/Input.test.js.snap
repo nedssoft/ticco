@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> should render correctly 1`] = `
+<div
+  className="Input"
+>
+  <label
+    className="Label"
+    htmlFor="password"
+  >
+     
+    Password
+  </label>
+  <input
+    className="InputElement"
+    id="password"
+    placeholder="Password"
+    type="password"
+    value=""
+  />
+</div>
+`;

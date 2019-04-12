@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const autoprefixer = require('autoprefixer')
-const webpack = require('webpack')
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
@@ -12,12 +11,6 @@ module.exports = {
     path: path.join(__dirname, '/dist/'),
     filename: 'bundle.js',
     publicPath: '/',
-  },
-  node: {
-    fs: 'empty',
-  },
-  devServer: {
-    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -94,6 +87,5 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    new webpack.optimize.UglifyJsPlugin()
   ],
 };
