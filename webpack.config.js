@@ -2,8 +2,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const autoprefixer = require('autoprefixer')
-const webpack = require('webpack')
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
@@ -87,13 +86,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template:  './src/index.html',
+      template:  path.resolve(__dirname + '/src', 'index.html'),
       filename: 'index.html',
       inject: 'body'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    new webpack.optimize.UglifyJsPlugin()
   ],
 };

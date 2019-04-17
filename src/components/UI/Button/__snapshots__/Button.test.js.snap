@@ -7,3 +7,12 @@ exports[`Auth Components should render correctly 1`] = `
   Submit
 </button>
 `;
+
+exports[`Auth Components simulate onClick handler 1`] = `
+<button
+  className="Button Submit"
+  onClick={[MockFunction]}
+>
+  Submit
+</button>
+`;

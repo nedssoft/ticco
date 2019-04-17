@@ -4,7 +4,7 @@ import styles from '../Auth.css'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import Button from '../../../components/UI/Button/Button'
-import { checkValidity } from '../../../helpers/helper'
+import { checkValidity, extractFormData } from '../../../helpers/helper'
 import { resetPassword } from '../../../store/actions'
 import { errorFeedback } from '../../../helpers/FeedbackMessage'
 
@@ -59,13 +59,6 @@ class SignIn extends Component {
     }
     const userData = this.extractFormData(controls)
     this.props.resetPassword(userData)
-  }
-  extractFormData = (data) => {
-    let formData = {}
-    for (let key in data) {
-      formData[key] = data[key].value;
-    }
-    return formData;
   }
   render() {
     const { controls, formIsValid } = this.state

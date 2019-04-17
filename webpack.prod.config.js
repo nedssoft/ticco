@@ -4,9 +4,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const autoprefixer = require('autoprefixer')
 
+
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
-  devtool: "cheap-module-source-map",
+  devtool: false,
+  mode: 'production',
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: 'bundle.js',
@@ -80,7 +82,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template:  './src/index.html',
+      template:  path.resolve(__dirname + '/src', 'index.html'),
       filename: 'index.html',
       inject: 'body'
     }),
@@ -88,4 +90,5 @@ module.exports = {
       filename: '[name].css',
     }),
   ],
+  
 };

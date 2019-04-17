@@ -20,3 +20,11 @@ export const checkValidity = (value, rules) => {
     }
     return isValid;
 }
+
+export  const  extractFormData = (data) => {
+    let formData = {}
+    for (let key in data) {
+      formData[key] = data[key].value;
+    }
+    return formData;
+}

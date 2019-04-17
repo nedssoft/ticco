@@ -5,7 +5,7 @@ import styles from '../Auth.css'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import Button from '../../../components/UI/Button/Button'
-import { checkValidity } from '../../../helpers/helper'
+import { checkValidity, extractFormData } from '../../../helpers/helper'
 import { loginUser } from '../../../store/actions'
 import { successFeedback, errorFeedback } from '../../../helpers/FeedbackMessage'
 
@@ -73,16 +73,10 @@ export class SignIn extends Component {
     if(!formIsValid) {
       return false
     }
-    const userData = this.extractFormData(controls)
+    const userData = extractFormData(controls)
     this.props.loginUser(userData)
   }
-  extractFormData = (data) => {
-    let formData = {}
-    for (let key in data) {
-      formData[key] = data[key].value;
-    }
-    return formData;
-  }
+
   render() {
     const { controls, formIsValid } = this.state
     let formElementArr = [];
